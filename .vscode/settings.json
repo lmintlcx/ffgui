@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "qprocess": "cpp",
+        "qobject": "cpp",
+        "xiosbase": "cpp",
+        "qwidget": "cpp",
+        "qdebug": "cpp",
+        "iosfwd": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "list": "cpp",
+        "initializer_list": "cpp",
+        "type_traits": "cpp",
+        "vector": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp",
+        "xlocale": "cpp",
+        "qfont": "cpp",
+        "*.rh": "cpp",
+        "chrono": "cpp"
+    }
+}

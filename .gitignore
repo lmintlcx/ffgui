@@ -1,0 +1,7 @@
+debug/
+release/
+.qmake.stash
+Makefile
+Makefile.Debug
+Makefile.Release
+pvz_plugin_import.cpp
