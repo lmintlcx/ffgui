@@ -58,7 +58,7 @@
     <message>
         <location filename="ffgui.cpp" line="168"/>
         <source>Keyframe Interval (s)</source>
-        <translation>帧间隔 (s)</translation>
+        <translation>最大关键帧间距 (s)</translation>
     </message>
     <message>
         <location filename="ffgui.cpp" line="177"/>
@@ -83,7 +83,7 @@
     <message>
         <location filename="ffgui.cpp" line="327"/>
         <source>Cutting</source>
-        <translation>剪切</translation>
+        <translation>剪辑</translation>
     </message>
     <message>
         <location filename="ffgui.cpp" line="332"/>
