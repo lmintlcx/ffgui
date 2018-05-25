@@ -23,6 +23,10 @@ int main(int argc, char *argv[])
     tr_zh_CN.load("./translations/zh_CN.qm");
     app.installTranslator(&tr_zh_CN);
 
+    QTranslator tr_qt_zh_CN;
+    tr_qt_zh_CN.load("./translations/qt_zh_CN.qm");
+    app.installTranslator(&tr_qt_zh_CN);
+
     HDC screen = GetDC(nullptr);
     int dpi_x = GetDeviceCaps(screen, LOGPIXELSX);
     int dpi_y = GetDeviceCaps(screen, LOGPIXELSY);
@@ -35,7 +39,7 @@ int main(int argc, char *argv[])
 
     FFGUI *ui = new FFGUI;
     ui->setAttribute(Qt::WA_DeleteOnClose);
-    ui->setWindowTitle("FFGUI 1.1");
+    ui->setWindowTitle("FFGUI 1.2");
     ui->setFixedSize(width, height);
     ui->show();
 

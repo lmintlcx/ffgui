@@ -3,9 +3,9 @@
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.2 Console"));
     Sleep(17);
-    console_hwnd = FindWindow(nullptr, TEXT("FFGUI Console"));
+    console_hwnd = FindWindow(nullptr, TEXT("FFGUI 1.2 Console"));
     ShowWindow(console_hwnd, SW_HIDE);
 
     this->list_frame_size << "320x200"

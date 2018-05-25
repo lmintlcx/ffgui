@@ -4,15 +4,15 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}",
-                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.13.26128/include/*",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.16299.0/um",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.16299.0/ucrt",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.16299.0/shared",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.16299.0/winrt",
-                "C:/Qt/v5.9.5/msvc2017/x86/static/include",
-                "C:/Qt/v5.9.5/msvc2017/x86/static/include/QtCore",
-                "C:/Qt/v5.9.5/msvc2017/x86/static/include/QtGui",
-                "C:/Qt/v5.9.5/msvc2017/x86/static/include/QtWidgets"
+                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.14.26428/include/*",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/um",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/ucrt",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/shared",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/winrt",
+                "C:/Qt/v5.9.5_msvc_x86_shared/include",
+                "C:/Qt/v5.9.5_msvc_x86_shared/include/QtCore",
+                "C:/Qt/v5.9.5_msvc_x86_shared/include/QtGui",
+                "C:/Qt/v5.9.5_msvc_x86_shared/include/QtWidgets"
             ],
             "defines": [
                 "_DEBUG",
@@ -23,15 +23,15 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}",
-                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.13.26128/include/*",
-                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.16299.0/um",
-                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.16299.0/ucrt",
-                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.16299.0/shared",
-                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.16299.0/winrt",
-                    "C:/Qt/v5.9.5/msvc2017/x86/static/include",
-                    "C:/Qt/v5.9.5/msvc2017/x86/static/include/QtCore",
-                    "C:/Qt/v5.9.5/msvc2017/x86/static/include/QtGui",
-                    "C:/Qt/v5.9.5/msvc2017/x86/static/include/QtWidgets"
+                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.14.26428/include/*",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/um",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/ucrt",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/shared",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/winrt",
+                    "C:/Qt/v5.9.5_msvc_x86_shared/include",
+                    "C:/Qt/v5.9.5_msvc_x86_shared/include/QtCore",
+                    "C:/Qt/v5.9.5_msvc_x86_shared/include/QtGui",
+                    "C:/Qt/v5.9.5_msvc_x86_shared/include/QtWidgets"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
@@ -40,5 +40,5 @@
             "cppStandard": "c++17"
         }
     ],
-    "version": 3
+    "version": 4
 }
