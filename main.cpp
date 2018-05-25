@@ -19,13 +19,16 @@ int main(int argc, char *argv[])
     font.setFamily("Microsoft YaHei");
     app.setFont(font);
 
-    QTranslator tr_zh_CN;
-    tr_zh_CN.load("./translations/zh_CN.qm");
-    app.installTranslator(&tr_zh_CN);
-
+    QTranslator tr_ffgui_zh_CN;
     QTranslator tr_qt_zh_CN;
-    tr_qt_zh_CN.load("./translations/qt_zh_CN.qm");
-    app.installTranslator(&tr_qt_zh_CN);
+    tr_ffgui_zh_CN.load(":/ffgui_zh_CN.qm");
+    tr_qt_zh_CN.load(":/qt_zh_CN.qm");
+    QString locale = QLocale::system().name();
+    if (locale.mid(0, 2) == "zh")
+    {
+        app.installTranslator(&tr_ffgui_zh_CN);
+        app.installTranslator(&tr_qt_zh_CN);
+    }
 
     HDC screen = GetDC(nullptr);
     int dpi_x = GetDeviceCaps(screen, LOGPIXELSX);
@@ -39,7 +42,7 @@ int main(int argc, char *argv[])
 
     FFGUI *ui = new FFGUI;
     ui->setAttribute(Qt::WA_DeleteOnClose);
-    ui->setWindowTitle("FFGUI 1.2");
+    ui->setWindowTitle("FFGUI 1.3");
     ui->setFixedSize(width, height);
     ui->show();
 

@@ -16,6 +16,7 @@
 #include <QDateTime>
 #include <QFileInfo>
 #include <QMessageBox>
+#include <QStandardPaths>
 
 #include "Windows.h"
 

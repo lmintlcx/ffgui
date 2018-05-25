@@ -9,10 +9,10 @@
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/ucrt",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/shared",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/winrt",
-                "C:/Qt/v5.9.5_msvc_x86_shared/include",
-                "C:/Qt/v5.9.5_msvc_x86_shared/include/QtCore",
-                "C:/Qt/v5.9.5_msvc_x86_shared/include/QtGui",
-                "C:/Qt/v5.9.5_msvc_x86_shared/include/QtWidgets"
+                "C:/Qt/v5.9.5_msvc_x86_static/include",
+                "C:/Qt/v5.9.5_msvc_x86_static/include/QtCore",
+                "C:/Qt/v5.9.5_msvc_x86_static/include/QtGui",
+                "C:/Qt/v5.9.5_msvc_x86_static/include/QtWidgets"
             ],
             "defines": [
                 "_DEBUG",
@@ -28,10 +28,10 @@
                     "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/ucrt",
                     "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/shared",
                     "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17134.0/winrt",
-                    "C:/Qt/v5.9.5_msvc_x86_shared/include",
-                    "C:/Qt/v5.9.5_msvc_x86_shared/include/QtCore",
-                    "C:/Qt/v5.9.5_msvc_x86_shared/include/QtGui",
-                    "C:/Qt/v5.9.5_msvc_x86_shared/include/QtWidgets"
+                    "C:/Qt/v5.9.5_msvc_x86_static/include",
+                    "C:/Qt/v5.9.5_msvc_x86_static/include/QtCore",
+                    "C:/Qt/v5.9.5_msvc_x86_static/include/QtGui",
+                    "C:/Qt/v5.9.5_msvc_x86_static/include/QtWidgets"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""

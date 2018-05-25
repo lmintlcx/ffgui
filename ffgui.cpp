@@ -3,9 +3,9 @@
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.2 Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.3 Console"));
     Sleep(17);
-    console_hwnd = FindWindow(nullptr, TEXT("FFGUI 1.2 Console"));
+    console_hwnd = FindWindow(nullptr, TEXT("FFGUI 1.3 Console"));
     ShowWindow(console_hwnd, SW_HIDE);
 
     this->list_frame_size << "320x200"
@@ -420,7 +420,7 @@ FFGUI::FFGUI()
         bool success = ExecuteScript(full_script);
         if (success)
         {
-            // MessageBeep(MB_OK);
+            MessageBeep(MB_OK);
         }
         else
         {
@@ -589,7 +589,12 @@ void FFGUI::ChangeOutputFileExt()
 
 QString FFGUI::GetScript()
 {
-    QString script_ffmpeg = "ffmpeg.exe";
+    QString script_ffmpeg = QString("")                              //
+                            + "\""                                   //
+                            + QCoreApplication::applicationDirPath() //
+                            + "/"                                    //
+                            + "ffmpeg.exe"                           //
+                            + "\"";
 
     QString script_cutting = check_box_cutting->isChecked()                                                                                             //
                                  ?                                                                                                                      //
@@ -674,23 +679,54 @@ QString FFGUI::GetScript()
 
 bool FFGUI::ExecuteScript(QString full_script)
 {
-    QString script_path = "script.bat";
-    QFile script_file(script_path);
-    if (!script_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
+    QString temp_dir = QStandardPaths::writableLocation(QStandardPaths::TempLocation) //
+                       + "/" + "ffgui_temp_"                                          //
+                       + QString::number(QDateTime::currentDateTime().toTime_t(), 16) //
+                       + "_a9efe77ad90194dc";
+
+    QDir temp;
+    bool exist = temp.exists(temp_dir);
+    if (exist)
         return false;
-    QTextStream out(&script_file);
+    else
+    {
+        bool ok = temp.mkdir(temp_dir);
+        if (!ok)
+            return false;
+    }
+
+    QString app_dir = QCoreApplication::applicationDirPath();
+    QDir::setCurrent(temp_dir);
+
+    QString script_file = temp_dir + "/" + "ffmpeg_script.bat";
+    QString temp_file_0 = temp_dir + "/" + "ffmpeg2pass-0.log";
+    QString temp_file_1 = temp_dir + "/" + "ffmpeg2pass-0.log.mbtree";
+    QFile file_s(script_file);
+    QFile file_0(temp_file_0);
+    QFile file_1(temp_file_1);
+
+    if (!file_s.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
+        return false;
+    QTextStream out(&file_s);
     out << full_script << endl;
     out.flush();
-    script_file.close();
+    file_s.close();
 
     this->hide();
     ShowWindow(console_hwnd, SW_SHOWNORMAL);
     SetForegroundWindow(console_hwnd);
 
-    int ret = system(script_path.toStdString().c_str());
+    int ret = system(script_file.toStdString().c_str());
 
     ShowWindow(console_hwnd, SW_HIDE);
     this->show();
+
+    QDir::setCurrent(app_dir);
+
+    file_s.remove();
+    file_0.remove();
+    file_1.remove();
+    temp.rmdir(temp_dir);
 
     return ret == 0 ? true : false;
 }
