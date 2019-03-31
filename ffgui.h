@@ -31,7 +31,8 @@ public:
   void EnableAudioWidgets(bool);
   void EnableCuttingWidgets(bool);
   void SwitchCRF2PASS();
-  void OpenFile();
+  void OpenFile1();
+  void OpenFile2();
   void ChangeOutputFileExt();
   QString GetScript();
   bool ExecuteScript(QString);
@@ -40,15 +41,20 @@ private:
   HWND console_hwnd;
   QStringList list_frame_size;
   QStringList list_bitrate;
-  // file
-  QGroupBox *group_box_file;
-  QGridLayout *grid_layout_file;
-  QLabel *label_input;
-  QLineEdit *line_edit_input_filename;
-  QPushButton *push_button_open;
+  // input
+  QGroupBox *group_box_input;
+  QGridLayout *grid_layout_input;
+  QLabel *label_input_1;
+  QLineEdit *line_edit_input_filename_1;
+  QPushButton *push_button_open_1;
+  QLabel *label_input_2;
+  QLineEdit *line_edit_input_filename_2;
+  QPushButton *push_button_open_2;
+  // output
+  QGroupBox *group_box_output;
+  QGridLayout *grid_layout_output;
   QLabel *label_output;
   QLineEdit *line_edit_output_filename;
-  QPushButton *push_button_execute;
   // video
   QGroupBox *group_box_video;
   QGridLayout *grid_layout_video;
@@ -83,14 +89,21 @@ private:
   QComboBox *combo_box_audio_frequency;
   QLabel *label_audio_channels;
   QComboBox *combo_box_audio_channels;
-  // other
-  QGroupBox *group_box_other;
-  QGridLayout *grid_layout_other;
+  // filter
+  QGroupBox *group_box_filter;
+  QGridLayout *grid_layout_filter;
   QCheckBox *check_box_cutting;
   QLabel *label_cutting_start;
   QLineEdit *line_edit_cutting_start;
   QLabel *label_cutting_duration;
   QLineEdit *line_edit_cutting_duration;
+  QCheckBox *check_box_half_speed;
+  QCheckBox *check_box_double_speed;
+  // scripts
+  QWidget *widget_scripts;
+  QGridLayout *grid_layout_scripts;
+  QPushButton *push_button_show_scripts;
+  QPushButton *push_button_execute;
   // main
   QGridLayout *main_layout;
 };

@@ -37,12 +37,13 @@ int main(int argc, char *argv[])
     const float default_dpi = 96.0f;
     float scale_x = dpi_x / default_dpi;
     float scale_y = dpi_y / default_dpi;
-    int width = 720 * scale_x;
-    int height = 400 * scale_y;
+    int width = 740 * scale_x;
+    int height = 560 * scale_y;
 
     FFGUI *ui = new FFGUI;
     ui->setAttribute(Qt::WA_DeleteOnClose);
-    ui->setWindowTitle("FFGUI 1.3");
+    ui->setWindowTitle("FFGUI 1.4");
+    ui->resize(width, height);
     ui->setFixedSize(width, height);
     ui->show();
 

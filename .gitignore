@@ -1,5 +1,6 @@
 debug/
 release/
+.vscode/ipch/
 .qmake.stash
 Makefile
 Makefile.Debug

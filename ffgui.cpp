@@ -3,9 +3,9 @@
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.3 Console"));
-    Sleep(17);
-    console_hwnd = FindWindow(nullptr, TEXT("FFGUI 1.3 Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.4 Console"));
+    Sleep(100);
+    console_hwnd = FindWindow(nullptr, TEXT("FFGUI 1.4 Console"));
     ShowWindow(console_hwnd, SW_HIDE);
 
     this->list_frame_size << "320x200"
@@ -85,37 +85,55 @@ FFGUI::FFGUI()
                        << "2950"
                        << "5950";
 
-    // file
+    // input
 
-    group_box_file = new QGroupBox(this);
-    group_box_file->setTitle(tr("File"));
+    group_box_input = new QGroupBox(this);
+    group_box_input->setTitle(tr("Input"));
 
-    label_input = new QLabel(group_box_file);
-    label_input->setText(tr("Input"));
-    line_edit_input_filename = new QLineEdit(group_box_file);
+    label_input_1 = new QLabel(group_box_input);
+    label_input_1->setText(tr("File") + " " + "1");
+    line_edit_input_filename_1 = new QLineEdit(group_box_input);
+    push_button_open_1 = new QPushButton(group_box_input);
+    push_button_open_1->setText(tr("Open"));
 
-    push_button_open = new QPushButton(group_box_file);
-    push_button_open->setText(tr("Open"));
+    label_input_2 = new QLabel(group_box_input);
+    label_input_2->setText(tr("File") + " " + "2");
+    line_edit_input_filename_2 = new QLineEdit(group_box_input);
+    push_button_open_2 = new QPushButton(group_box_input);
+    push_button_open_2->setText(tr("Open"));
 
-    label_output = new QLabel(group_box_file);
-    label_output->setText(tr("Output"));
-    line_edit_output_filename = new QLineEdit(group_box_file);
-    push_button_execute = new QPushButton(group_box_file);
-    push_button_execute->setText(tr("Execute"));
+    grid_layout_input = new QGridLayout(group_box_input);
+    grid_layout_input->addWidget(label_input_1, 0, 0, 1, 1);
+    grid_layout_input->addWidget(line_edit_input_filename_1, 0, 1, 1, 1);
+    grid_layout_input->addWidget(push_button_open_1, 0, 2, 1, 1);
+    grid_layout_input->addWidget(label_input_2, 1, 0, 1, 1);
+    grid_layout_input->addWidget(line_edit_input_filename_2, 1, 1, 1, 1);
+    grid_layout_input->addWidget(push_button_open_2, 1, 2, 1, 1);
+    grid_layout_input->setRowStretch(0, 1);
+    grid_layout_input->setRowStretch(1, 1);
+    grid_layout_input->setColumnStretch(0, 1);
+    grid_layout_input->setColumnStretch(1, 8);
+    grid_layout_input->setColumnStretch(2, 1);
+    grid_layout_input->setSpacing(10);
 
-    grid_layout_file = new QGridLayout(group_box_file);
-    grid_layout_file->addWidget(label_input, 0, 0, 1, 1);
-    grid_layout_file->addWidget(line_edit_input_filename, 0, 1, 1, 1);
-    grid_layout_file->addWidget(push_button_open, 0, 2, 1, 1);
-    grid_layout_file->addWidget(label_output, 1, 0, 1, 1);
-    grid_layout_file->addWidget(line_edit_output_filename, 1, 1, 1, 1);
-    grid_layout_file->addWidget(push_button_execute, 1, 2, 1, 1);
-    grid_layout_file->setRowStretch(0, 1);
-    grid_layout_file->setRowStretch(1, 1);
-    grid_layout_file->setColumnStretch(0, 1);
-    grid_layout_file->setColumnStretch(1, 8);
-    grid_layout_file->setColumnStretch(2, 1);
-    grid_layout_file->setSpacing(10);
+    // output
+
+    group_box_output = new QGroupBox(this);
+    group_box_output->setTitle(tr("Output"));
+
+    label_output = new QLabel(group_box_output);
+    label_output->setText(tr("File"));
+    line_edit_output_filename = new QLineEdit(group_box_output);
+
+    grid_layout_output = new QGridLayout(group_box_output);
+    grid_layout_output->addWidget(label_output, 0, 0, 1, 1);
+    grid_layout_output->addWidget(line_edit_output_filename, 0, 1, 1, 2);
+    grid_layout_output->setRowStretch(0, 1);
+    grid_layout_output->setRowStretch(1, 1);
+    grid_layout_output->setColumnStretch(0, 1);
+    grid_layout_output->setColumnStretch(1, 8);
+    grid_layout_output->setColumnStretch(2, 1);
+    grid_layout_output->setSpacing(10);
 
     // video
 
@@ -215,7 +233,7 @@ FFGUI::FFGUI()
     label_video_bitrate = new QLabel(group_box_video);
     label_video_bitrate->setText(tr("Bitrate (kbps)"));
     line_edit_video_bitrate = new QLineEdit(group_box_video);
-    line_edit_video_bitrate->setText("1950");
+    line_edit_video_bitrate->setText("2950");
 
     QIntValidator *validator_video_bitrate = new QIntValidator;
     validator_video_bitrate->setRange(0, 99999999);
@@ -254,7 +272,7 @@ FFGUI::FFGUI()
     grid_layout_video->setColumnStretch(1, 1);
     grid_layout_video->setColumnStretch(2, 1);
     grid_layout_video->setColumnStretch(3, 1);
-    grid_layout_video->setSpacing(10);
+    grid_layout_video->setSpacing(15);
 
     // audio
 
@@ -316,64 +334,101 @@ FFGUI::FFGUI()
     grid_layout_audio->setRowStretch(4, 1);
     grid_layout_audio->setColumnStretch(0, 1);
     grid_layout_audio->setColumnStretch(1, 1);
-    grid_layout_audio->setSpacing(10);
+    grid_layout_audio->setSpacing(15);
 
-    // other
+    // filter
 
-    group_box_other = new QGroupBox(this);
-    group_box_other->setTitle(tr("Others"));
+    group_box_filter = new QGroupBox(this);
+    group_box_filter->setTitle(tr("Filter"));
 
-    check_box_cutting = new QCheckBox(group_box_other);
+    check_box_cutting = new QCheckBox(group_box_filter);
     check_box_cutting->setText(tr("Cutting"));
     check_box_cutting->setChecked(false);
 
-    label_cutting_start = new QLabel(group_box_other);
+    label_cutting_start = new QLabel(group_box_filter);
     label_cutting_start->setAlignment(Qt::AlignCenter);
     label_cutting_start->setText(tr("Start"));
     label_cutting_start->setEnabled(false);
-    line_edit_cutting_start = new QLineEdit(group_box_other);
+    line_edit_cutting_start = new QLineEdit(group_box_filter);
     line_edit_cutting_start->setInputMask("00:00:00.000");
     line_edit_cutting_start->setText("00:00:00.000");
     line_edit_cutting_start->setEnabled(false);
 
-    label_cutting_duration = new QLabel(group_box_other);
+    label_cutting_duration = new QLabel(group_box_filter);
     label_cutting_duration->setAlignment(Qt::AlignCenter);
     label_cutting_duration->setText(tr("Duration"));
     label_cutting_duration->setEnabled(false);
-    line_edit_cutting_duration = new QLineEdit(group_box_other);
+    line_edit_cutting_duration = new QLineEdit(group_box_filter);
     line_edit_cutting_duration->setInputMask("00:00:00.000");
     line_edit_cutting_duration->setText("00:00:00.000");
     line_edit_cutting_duration->setEnabled(false);
 
-    grid_layout_other = new QGridLayout(group_box_other);
-    grid_layout_other->addWidget(check_box_cutting, 0, 0, 1, 1);
-    grid_layout_other->addWidget(label_cutting_start, 0, 1, 1, 1);
-    grid_layout_other->addWidget(line_edit_cutting_start, 0, 2, 1, 1);
-    grid_layout_other->addWidget(label_cutting_duration, 0, 3, 1, 1);
-    grid_layout_other->addWidget(line_edit_cutting_duration, 0, 4, 1, 1);
-    grid_layout_other->setRowStretch(0, 1);
-    grid_layout_other->setColumnStretch(0, 2);
-    grid_layout_other->setColumnStretch(1, 1);
-    grid_layout_other->setColumnStretch(2, 2);
-    grid_layout_other->setColumnStretch(3, 1);
-    grid_layout_other->setColumnStretch(4, 2);
-    grid_layout_other->setSpacing(10);
+    check_box_half_speed = new QCheckBox(group_box_filter);
+    check_box_half_speed->setText(tr("Half Speed") + " " + "(0.5x)");
+    check_box_half_speed->setChecked(false);
+    check_box_double_speed = new QCheckBox(group_box_filter);
+    check_box_double_speed->setText(tr("Double Speed") + " " + "(2x)");
+    check_box_double_speed->setChecked(false);
+
+    grid_layout_filter = new QGridLayout(group_box_filter);
+    grid_layout_filter->addWidget(check_box_cutting, 0, 0, 1, 1);
+    grid_layout_filter->addWidget(label_cutting_start, 0, 1, 1, 1);
+    grid_layout_filter->addWidget(line_edit_cutting_start, 0, 2, 1, 1);
+    grid_layout_filter->addWidget(label_cutting_duration, 0, 3, 1, 1);
+    grid_layout_filter->addWidget(line_edit_cutting_duration, 0, 4, 1, 1);
+    grid_layout_filter->addWidget(check_box_half_speed, 1, 0, 1, 1);
+    grid_layout_filter->addWidget(check_box_double_speed, 1, 1, 1, 1);
+    grid_layout_filter->setRowStretch(0, 1);
+    grid_layout_filter->setRowStretch(1, 1);
+    grid_layout_filter->setColumnStretch(0, 2);
+    grid_layout_filter->setColumnStretch(1, 1);
+    grid_layout_filter->setColumnStretch(2, 2);
+    grid_layout_filter->setColumnStretch(3, 1);
+    grid_layout_filter->setColumnStretch(4, 2);
+    grid_layout_filter->setSpacing(15);
+
+    // scripts
+
+    widget_scripts = new QWidget(this);
+
+    push_button_show_scripts = new QPushButton(widget_scripts);
+    push_button_show_scripts->setText(tr("Show Scripts"));
+    push_button_execute = new QPushButton(widget_scripts);
+    push_button_execute->setText(tr("Start Convert"));
+
+    grid_layout_scripts = new QGridLayout(widget_scripts);
+    grid_layout_scripts->addWidget(push_button_show_scripts, 0, 2, 1, 1);
+    grid_layout_scripts->addWidget(push_button_execute, 0, 3, 1, 1);
+    grid_layout_scripts->setRowStretch(0, 1);
+    grid_layout_scripts->setColumnStretch(0, 1);
+    grid_layout_scripts->setColumnStretch(1, 1);
+    grid_layout_scripts->setColumnStretch(2, 1);
+    grid_layout_scripts->setColumnStretch(3, 1);
+    grid_layout_scripts->setSpacing(15);
 
     // main
 
     main_layout = new QGridLayout(this);
-    main_layout->addWidget(group_box_file, 0, 0, 1, 2);
-    main_layout->addWidget(group_box_video, 1, 0, 1, 1);
-    main_layout->addWidget(group_box_audio, 1, 1, 1, 1);
-    main_layout->addWidget(group_box_other, 2, 0, 1, 2);
-    main_layout->setRowStretch(0, 3);
-    main_layout->setRowStretch(1, 6);
-    main_layout->setRowStretch(2, 2);
+    main_layout->addWidget(group_box_input, 0, 0, 1, 2);
+    main_layout->addWidget(group_box_output, 1, 0, 1, 2);
+    main_layout->addWidget(group_box_video, 2, 0, 1, 1);
+    main_layout->addWidget(group_box_audio, 2, 1, 1, 1);
+    main_layout->addWidget(group_box_filter, 3, 0, 1, 2);
+    main_layout->addWidget(widget_scripts, 4, 0, 1, 2);
+    main_layout->setRowStretch(0, 4);
+    main_layout->setRowStretch(1, 3);
+    main_layout->setRowStretch(2, 7);
+    main_layout->setRowStretch(3, 3);
+    main_layout->setRowStretch(4, 2);
     main_layout->setColumnStretch(0, 2);
     main_layout->setColumnStretch(1, 1);
     setLayout(main_layout);
 
     // signal and slots
+
+    connect(push_button_open_1, &QPushButton::clicked, this, &FFGUI::OpenFile1);
+
+    connect(push_button_open_2, &QPushButton::clicked, this, &FFGUI::OpenFile2);
 
     connect(check_box_video_enable, &QCheckBox::stateChanged, [=](int state) {
         EnableVideoWidgets(state == Qt::Checked);
@@ -406,9 +461,33 @@ FFGUI::FFGUI()
         EnableCuttingWidgets(state == Qt::Checked);
     });
 
-    connect(push_button_open, &QPushButton::clicked, this, &FFGUI::OpenFile);
-
     connect(combo_box_video_container, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &FFGUI::ChangeOutputFileExt);
+
+    connect(check_box_half_speed, &QCheckBox::stateChanged, [=](int state) {
+        if (state == Qt::Checked)
+            check_box_double_speed->setChecked(false);
+    });
+
+    connect(check_box_double_speed, &QCheckBox::stateChanged, [=](int state) {
+        if (state == Qt::Checked)
+            check_box_half_speed->setChecked(false);
+    });
+
+    connect(push_button_show_scripts, &QPushButton::clicked, [=]() {
+        QString script_input_file_1 = line_edit_input_filename_1->text();
+        QString script_input_file_2 = line_edit_input_filename_2->text();
+        if (script_input_file_1 == "" && script_input_file_2 == "")
+            return;
+
+        QString full_script = GetScript();
+
+        QMessageBox msg_box;
+        msg_box.setWindowTitle(tr("FFmpeg Scripts"));
+        msg_box.setText(full_script);
+        msg_box.setStyleSheet("QMessageBox { messagebox-text-interaction-flags: 5; }");
+        msg_box.setStandardButtons(QMessageBox::Ok);
+        msg_box.exec();
+    });
 
     connect(push_button_execute, &QPushButton::clicked, [=]() {
         bool video_enabled = check_box_video_enable->isChecked();
@@ -551,20 +630,39 @@ void FFGUI::SwitchCRF2PASS()
     }
 }
 
-void FFGUI::OpenFile()
+void FFGUI::OpenFile1()
 {
     QString input_file_full_name = QFileDialog::getOpenFileName(
         this,
         tr("Open File"),
         ".",
-        tr("Video files (*.flv *.mp4 *.avi *.mov *.mkv) ;; All files (*.*)"));
+        tr("All files (*.*) ;; Video files (*.flv *.mp4 *.avi *.mov *.mkv) ;; Audio files (*.mp3 *.aac *.flac)"));
     if (!input_file_full_name.isNull())
     {
-        line_edit_input_filename->setText(input_file_full_name);
+        line_edit_input_filename_1->setText(input_file_full_name);
         QString output_file_full_name = input_file_full_name.mid(0, input_file_full_name.lastIndexOf('.'))   //
                                         + "_" + QString::number(QDateTime::currentDateTime().toTime_t(), 16) //
                                         + "." + combo_box_video_container->currentText();
-        line_edit_output_filename->setText(output_file_full_name);
+        if (line_edit_output_filename->text() == "")
+            line_edit_output_filename->setText(output_file_full_name);
+    }
+}
+
+void FFGUI::OpenFile2()
+{
+    QString input_file_full_name = QFileDialog::getOpenFileName(
+        this,
+        tr("Open File"),
+        ".",
+        tr("All files (*.*) ;; Video files (*.flv *.mp4 *.avi *.mov *.mkv) ;; Audio files (*.mp3 *.aac *.flac)"));
+    if (!input_file_full_name.isNull())
+    {
+        line_edit_input_filename_2->setText(input_file_full_name);
+        QString output_file_full_name = input_file_full_name.mid(0, input_file_full_name.lastIndexOf('.'))   //
+                                        + "_" + QString::number(QDateTime::currentDateTime().toTime_t(), 16) //
+                                        + "." + combo_box_video_container->currentText();
+        if (line_edit_output_filename->text() == "")
+            line_edit_output_filename->setText(output_file_full_name);
     }
 }
 
@@ -596,13 +694,29 @@ QString FFGUI::GetScript()
                             + "ffmpeg.exe"                           //
                             + "\"";
 
-    QString script_cutting = check_box_cutting->isChecked()                                                                                             //
-                                 ?                                                                                                                      //
-                                 (QString(" ") + "-ss" + " " + line_edit_cutting_start->text() + " " + "-t" + " " + line_edit_cutting_duration->text()) //
-                                 :                                                                                                                      //
-                                 QString("");
+    QString script_filter_cut = check_box_cutting->isChecked()                                                                                             //
+                                    ?                                                                                                                      //
+                                    (QString(" ") + "-ss" + " " + line_edit_cutting_start->text() + " " + "-t" + " " + line_edit_cutting_duration->text()) //
+                                    :                                                                                                                      //
+                                    QString("");
 
-    QString script_input_file = QString(" ") + "-i" + " " + "\"" + line_edit_input_filename->text() + "\"";
+    QString script_filter_speed = QString("");
+    if (check_box_half_speed->isChecked())
+        script_filter_speed = QString(" -filter_complex [0:v]setpts=2.0*PTS[v];[0:a]atempo=0.5[a] -map [v] -map [a]");
+    else if (check_box_double_speed->isChecked())
+        script_filter_speed = QString(" -filter_complex [0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a] -map [v] -map [a]");
+
+    QString script_filter = QString("") + script_filter_cut + script_filter_speed;
+
+    QString script_input_file_1 = QString("");
+    QString script_input_file_2 = QString("");
+
+    if (line_edit_input_filename_1->text() != "")
+        script_input_file_1 = QString(" ") + "-i" + " " + "\"" + line_edit_input_filename_1->text() + "\"";
+    if (line_edit_input_filename_2->text() != "")
+        script_input_file_2 = QString(" ") + "-i" + " " + "\"" + line_edit_input_filename_2->text() + "\"";
+
+    QString script_input = QString("") + script_input_file_1 + script_input_file_2;
 
     QString script_video;
     if (!check_box_video_enable->isChecked())
@@ -614,7 +728,7 @@ QString FFGUI::GetScript()
         else
             script_video = QString(" ") + "-vcodec" + QString(" ") + combo_box_video_codec->currentText()                                                                //
                            + " " + "-preset" + " " + combo_box_video_preset->currentText()                                                                               //
-                           + " " + "-profile:v high" + " " + "-level:v 4.1"                                                                                              //
+                           + " " + "-profile:v high" + " " + "-level:v 4.2"                                                                                              //
                            + " " + "-x264-params" + " "                                                                                                                  //
                            + "keyint=" + QString::number(int(combo_box_video_frame_rate->currentText().toDouble() * line_edit_video_keyframe->text().toDouble() * 0.95)) //
                            + ":" + "min-keyint=" + combo_box_video_frame_rate->currentText()                                                                             //
@@ -648,16 +762,16 @@ QString FFGUI::GetScript()
     {
         full_script = QString("")                                                                              //
                       + script_ffmpeg                                                                          //
-                      + script_cutting                                                                         //
-                      + script_input_file                                                                      //
+                      + script_input                                                                           //
+                      + script_filter                                                                          //
                       + script_video                                                                           //
                       + " " + "-pass" + " " + "1"                                                              //
                       + script_audio                                                                           //
                       + " " + "-f" + " " + combo_box_video_container->currentText() + " " + "NUL" + " " + "-y" //
                       + " " + "&&" + " "                                                                       //
                       + script_ffmpeg                                                                          //
-                      + script_cutting                                                                         //
-                      + script_input_file                                                                      //
+                      + script_input                                                                           //
+                      + script_filter                                                                          //
                       + script_video                                                                           //
                       + " " + "-pass" + " " + "2"                                                              //
                       + script_audio                                                                           //
@@ -665,12 +779,12 @@ QString FFGUI::GetScript()
     }
     else
     {
-        full_script = QString("")         //
-                      + script_ffmpeg     //
-                      + script_cutting    //
-                      + script_input_file //
-                      + script_video      //
-                      + script_audio      //
+        full_script = QString("")     //
+                      + script_ffmpeg //
+                      + script_input  //
+                      + script_filter //
+                      + script_video  //
+                      + script_audio  //
                       + script_output_file + " " + "-y";
     }
 
