@@ -3,9 +3,9 @@
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.4 Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.5 Console"));
     Sleep(100);
-    console_hwnd = FindWindow(nullptr, TEXT("FFGUI 1.4 Console"));
+    console_hwnd = FindWindow(nullptr, TEXT("FFGUI 1.5 Console"));
     ShowWindow(console_hwnd, SW_HIDE);
 
     this->list_frame_size << "320x200"
@@ -155,6 +155,7 @@ FFGUI::FFGUI()
     combo_box_video_codec = new QComboBox(group_box_video);
     combo_box_video_codec->addItem("copy");
     combo_box_video_codec->addItem("libx264");
+    combo_box_video_codec->addItem("h264_nvenc");
     combo_box_video_codec->setCurrentIndex(1);
 
     label_video_container = new QLabel(group_box_video);
@@ -451,6 +452,43 @@ FFGUI::FFGUI()
         SwitchCRF2PASS();
     });
 
+    connect(combo_box_video_codec, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [=](int index) {
+        if (index == 0)
+            combo_box_video_preset->clear();
+        else if (index == 1)
+        {
+            combo_box_video_preset->clear();
+            combo_box_video_preset->addItem("ultrafast");
+            combo_box_video_preset->addItem("superfast");
+            combo_box_video_preset->addItem("veryfast");
+            combo_box_video_preset->addItem("faster");
+            combo_box_video_preset->addItem("fast");
+            combo_box_video_preset->addItem("medium");
+            combo_box_video_preset->addItem("slow");
+            combo_box_video_preset->addItem("slower");
+            combo_box_video_preset->addItem("veryslow");
+            combo_box_video_preset->addItem("placebo");
+            combo_box_video_preset->setCurrentIndex(8);
+        }
+        else if (index == 2)
+        {
+            combo_box_video_preset->clear();
+            combo_box_video_preset->addItem("default");
+            combo_box_video_preset->addItem("slow");
+            combo_box_video_preset->addItem("medium");
+            combo_box_video_preset->addItem("fast");
+            combo_box_video_preset->addItem("hp");
+            combo_box_video_preset->addItem("hq");
+            combo_box_video_preset->addItem("bd");
+            combo_box_video_preset->addItem("ll");
+            combo_box_video_preset->addItem("llhq");
+            combo_box_video_preset->addItem("llhp");
+            combo_box_video_preset->addItem("lossless");
+            combo_box_video_preset->addItem("losslesshp");
+            combo_box_video_preset->setCurrentIndex(1);
+        }
+    });
+
     connect(check_box_audio_enable, &QCheckBox::stateChanged, [=](int state) {
         EnableAudioWidgets(state == Qt::Checked);
     });
@@ -693,6 +731,8 @@ QString FFGUI::GetScript()
                             + "/"                                    //
                             + "ffmpeg.exe"                           //
                             + "\"";
+    if (combo_box_video_codec->currentText() == "h264_nvenc")
+        script_ffmpeg += " -hwaccel cuvid -c:v h264_cuvid";
 
     QString script_filter_cut = check_box_cutting->isChecked()                                                                                             //
                                     ?                                                                                                                      //
@@ -725,19 +765,30 @@ QString FFGUI::GetScript()
     {
         if (combo_box_video_codec->currentText() == "copy")
             script_video = QString(" ") + "-vcodec copy";
-        else
-            script_video = QString(" ") + "-vcodec" + QString(" ") + combo_box_video_codec->currentText()                                                                //
+        else if (combo_box_video_codec->currentText() == "libx264")
+            script_video = QString(" ") + "-vcodec libx264"                                                                                                              //
                            + " " + "-preset" + " " + combo_box_video_preset->currentText()                                                                               //
                            + " " + "-profile:v high" + " " + "-level:v 4.2"                                                                                              //
                            + " " + "-x264-params" + " "                                                                                                                  //
                            + "keyint=" + QString::number(int(combo_box_video_frame_rate->currentText().toDouble() * line_edit_video_keyframe->text().toDouble() * 0.95)) //
-                           + ":" + "min-keyint=" + combo_box_video_frame_rate->currentText()                                                                             //
+                           + ":" + "min-keyint=" + QString::number(int(combo_box_video_frame_rate->currentText().toDouble()))                                            //
                            + " " + "-pix_fmt" + " " + "yuv420p"                                                                                                          //
                            + ((check_box_video_crf->isChecked()) ?                                                                                                       //
                                   (QString(" ") + "-crf" + " " + spin_box_video_factor->text())                                                                          //
                                                                  :                                                                                                       //
                                   (QString(" ") + "-b:v" + " " + line_edit_video_bitrate->text() + "k"))                                                                 //
                            + " " + "-s" + " " + line_edit_video_frame_size->text()                                                                                       //
+                           + " " + "-r" + " " + combo_box_video_frame_rate->currentText();
+        else if (combo_box_video_codec->currentText() == "h264_nvenc")
+            script_video = QString(" ") + "-vcodec h264_nvenc"                                           //
+                           + " " + "-preset" + " " + combo_box_video_preset->currentText()               //
+                           + " " + "-profile:v high" + " " + "-level:v 4.2"                              //
+                           + " " + "-pixel_format" + " " + "yuv420p"                                     //
+                           + ((check_box_video_crf->isChecked()) ?                                       //
+                                  (QString(" ") + "-cq" + " " + spin_box_video_factor->text())           //
+                                                                 :                                       //
+                                  (QString(" ") + "-b:v" + " " + line_edit_video_bitrate->text() + "k")) //
+                        //    + " " + "-s" + " " + line_edit_video_frame_size->text()                          // TODO
                            + " " + "-r" + " " + combo_box_video_frame_rate->currentText();
     }
 
@@ -760,22 +811,32 @@ QString FFGUI::GetScript()
     QString full_script;
     if (check_box_video_enable->isChecked() && check_box_video_2pass->isChecked())
     {
-        full_script = QString("")                                                                              //
-                      + script_ffmpeg                                                                          //
-                      + script_input                                                                           //
-                      + script_filter                                                                          //
-                      + script_video                                                                           //
-                      + " " + "-pass" + " " + "1"                                                              //
-                      + script_audio                                                                           //
-                      + " " + "-f" + " " + combo_box_video_container->currentText() + " " + "NUL" + " " + "-y" //
-                      + " " + "&&" + " "                                                                       //
-                      + script_ffmpeg                                                                          //
-                      + script_input                                                                           //
-                      + script_filter                                                                          //
-                      + script_video                                                                           //
-                      + " " + "-pass" + " " + "2"                                                              //
-                      + script_audio                                                                           //
-                      + script_output_file + " " + "-y";
+        if (combo_box_video_codec->currentText() == "libx264")
+            full_script = QString("")                                                                              //
+                          + script_ffmpeg                                                                          //
+                          + script_input                                                                           //
+                          + script_filter                                                                          //
+                          + script_video                                                                           //
+                          + " " + "-pass" + " " + "1"                                                              //
+                          + script_audio                                                                           //
+                          + " " + "-f" + " " + combo_box_video_container->currentText() + " " + "NUL" + " " + "-y" //
+                          + " " + "&&" + " "                                                                       //
+                          + script_ffmpeg                                                                          //
+                          + script_input                                                                           //
+                          + script_filter                                                                          //
+                          + script_video                                                                           //
+                          + " " + "-pass" + " " + "2"                                                              //
+                          + script_audio                                                                           //
+                          + script_output_file + " " + "-y";
+        else if (combo_box_video_codec->currentText() == "h264_nvenc")
+            full_script = QString("")                     //
+                          + script_ffmpeg                 //
+                          + script_input                  //
+                          + script_filter                 //
+                          + script_video                  //
+                          + script_audio                  //
+                          + " " + "-2pass" + " " + "true" //
+                          + script_output_file + " " + "-y";
     }
     else
     {
