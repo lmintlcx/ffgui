@@ -17,6 +17,7 @@
         "xlocale": "cpp",
         "qfont": "cpp",
         "*.rh": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "qsizepolicy": "cpp"
     }
 }
