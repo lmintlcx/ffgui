@@ -18,6 +18,7 @@
         "qfont": "cpp",
         "*.rh": "cpp",
         "chrono": "cpp",
-        "qsizepolicy": "cpp"
+        "qsizepolicy": "cpp",
+        "qapplication": "cpp"
     }
 }

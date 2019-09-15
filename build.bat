@@ -8,9 +8,9 @@ D: && cd D:\tmp\ffgui_build
 
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86
 
-C:\Qt\v5.12.4_msvc2017_x86_static\bin\qmake.exe D:\work\ffgui\ffgui.pro -spec win32-msvc
-REM C:\Qt\v5.12.4_msvc2017_x86_static\bin\lupdate.exe D:\work\ffgui\ffgui.pro
-REM C:\Qt\v5.12.4_msvc2017_x86_static\bin\lrelease.exe D:\work\ffgui\ffgui.pro
+C:\Qt\v5.12.5_msvc2017_x86_static\bin\qmake.exe D:\work\ffgui\ffgui.pro -spec win32-msvc
+REM C:\Qt\v5.12.5_msvc2017_x86_static\bin\lupdate.exe D:\work\ffgui\ffgui.pro
+REM C:\Qt\v5.12.5_msvc2017_x86_static\bin\lrelease.exe D:\work\ffgui\ffgui.pro
 del D:\tmp\ffgui_build\debug\ffgui.exe
 del D:\tmp\ffgui_build\release\ffgui.exe
 nmake Debug

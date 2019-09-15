@@ -71,7 +71,7 @@ void FFmpeg::ExecuteScript(QString full_script)
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.6 Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.6.1 Console"));
 
     this->list_frame_size << "320x200"
                           << "320x240"
@@ -341,7 +341,8 @@ FFGUI::FFGUI()
     label_video_x264_keyint = new QLabel(group_box_video);
     label_video_x264_keyint->setText(tr("Keyframe Interval") + " (s)");
     line_edit_video_x264_keyint = new QLineEdit(group_box_video);
-    line_edit_video_x264_keyint->setText("10");
+    // line_edit_video_x264_keyint->setText("10");
+    line_edit_video_x264_keyint->setPlaceholderText("10");
 
     QIntValidator *validator_video_keyframe = new QIntValidator;
     validator_video_keyframe->setRange(1, 999);
@@ -1030,9 +1031,16 @@ QString FFGUI::GetScript()
         QString script_video_level = QString(" ") + "-level:v" + " " + combo_box_video_profile_level->currentText().split(" ", QString::SkipEmptyParts)[1];
         QString script_video_profile_level = script_video_profile + script_video_level;
 
-        QString script_video_x264_params = QString(" ") + "-x264-params" + " "                                                                                                       //
-                                           + "keyint=" + QString::number(int(line_edit_video_frame_rate->text().toDouble() * line_edit_video_x264_keyint->text().toDouble() * 0.95)) //
-                                           + ":" + "min-keyint=" + QString::number(int(line_edit_video_frame_rate->text().toDouble()));
+        double input_frame_rate = 25.0;
+        double input_keyint_sec = 10.0;
+        if (line_edit_video_frame_rate->text() != "")
+            input_frame_rate = line_edit_video_frame_rate->text().toDouble();
+        if (line_edit_video_x264_keyint->text() != "")
+            input_keyint_sec = line_edit_video_x264_keyint->text().toDouble();
+        QString script_video_x264_params = QString(" ") + "-x264-params" + " "                                            //
+                                           + "keyint=" + QString::number(int(input_frame_rate * input_keyint_sec * 0.95)) //
+                                           + ":" + "min-keyint=" + QString::number(int(input_frame_rate));
+
         QString script_video_pix_fmt = QString(" ") + "-pix_fmt" + " " + "yuv420p";
 
         QString script_video_rate_control = QString("");
