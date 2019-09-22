@@ -63,6 +63,9 @@ signals:
   void ExecuteScript(QString);
 
 private:
+  // time
+  QDateTime begin_time;
+  QDateTime end_time;
   // list
   QStringList list_frame_size;
   QStringList list_frame_rate;

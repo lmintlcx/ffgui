@@ -5,7 +5,7 @@ CONFIG += qt console
 TEMPLATE = app
 TARGET = "ffgui"
 
-QMAKE_CXXFLAGS += /MP
+QMAKE_CXXFLAGS += /MP /utf-8 /std:c++17
 
 HEADERS += \
         ffgui.h

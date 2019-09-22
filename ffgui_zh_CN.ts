@@ -138,34 +138,40 @@
         <translation>FFmpeg 脚本</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="927"/>
+        <location filename="ffgui.cpp" line="929"/>
         <source>All files (*.*) ;; Picture files (*.png *.jpg *.gif *.tiff *.webp)</source>
         <translation>所有文件 (*.*) ;; 图片文件 (*.png *.jpg *.gif *.tiff *.webp)</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1154"/>
-        <source>Error</source>
-        <translation>错误</translation>
+        <location filename="ffgui.cpp" line="1158"/>
+        <source>Encoding success!</source>
+        <translation>转码成功！</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1156"/>
-        <source>Encoding Error!</source>
-        <translation>转码出错!</translation>
+        <location filename="ffgui.cpp" line="1159"/>
+        <location filename="ffgui.cpp" line="1166"/>
+        <source>Time span</source>
+        <translation>耗时</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="890"/>
-        <location filename="ffgui.cpp" line="904"/>
-        <location filename="ffgui.cpp" line="925"/>
+        <location filename="ffgui.cpp" line="1165"/>
+        <source>Encoding failure!</source>
+        <translation>转码失败！</translation>
+    </message>
+    <message>
+        <location filename="ffgui.cpp" line="892"/>
+        <location filename="ffgui.cpp" line="906"/>
+        <location filename="ffgui.cpp" line="927"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="892"/>
+        <location filename="ffgui.cpp" line="894"/>
         <source>All files (*.*) ;; Video files (*.flv *.mp4 *.avi *.mov *.mkv)</source>
         <translation>所有文件 (*.*) ;; 视频文件 (*.flv *.mp4 *.avi *.mov *.mkv)</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="906"/>
+        <location filename="ffgui.cpp" line="908"/>
         <source>All files (*.*) ;; Audio files (*.mp3 *.aac *.flac)</source>
         <translation>所有文件 (*.*) ;; 音频文件 (*.mp3 *.aac *.flac)</translation>
     </message>

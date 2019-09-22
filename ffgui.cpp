@@ -71,7 +71,7 @@ void FFmpeg::ExecuteScript(QString full_script)
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.6.1 Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.6.2 Console"));
 
     this->list_frame_size << "320x200"
                           << "320x240"
@@ -845,8 +845,10 @@ FFGUI::FFGUI()
         if (!video_enabled && !audio_enabled)
             return;
 
-        QString full_script = GetScript();
         push_button_execute->setEnabled(false);
+        this->begin_time = QDateTime::currentDateTime();
+
+        QString full_script = GetScript();
         emit ExecuteScript(full_script);
     });
 
@@ -1143,17 +1145,29 @@ QString FFGUI::GetScript()
 void FFGUI::ExecuteResult(bool success)
 {
     push_button_execute->setEnabled(true);
+    this->end_time = QDateTime::currentDateTime();
+
+    // TODO
+    if (success)
+        qDebug() << "Conversion success!";
+
+    qDebug() << "";
+
     if (success)
     {
-        qDebug() << "Conversion success!";
+        qDebug() << tr("Encoding success!")
+                 << " " << tr("Time span") << ": "
+                 << QDateTime::fromMSecsSinceEpoch(this->end_time.toMSecsSinceEpoch() - this->begin_time.toMSecsSinceEpoch()).toUTC().toString("hh:mm:ss");
         MessageBeep(MB_OK);
     }
     else
     {
-        QMessageBox msg_box;
-        msg_box.setWindowTitle(tr("Error"));
-        msg_box.setIcon(QMessageBox::Critical);
-        msg_box.setText(tr("Encoding Error!"));
-        msg_box.exec();
+        qDebug() << tr("Encoding failure!")
+                 << " " << tr("Time span") << ": "
+                 << QDateTime::fromMSecsSinceEpoch(this->end_time.toMSecsSinceEpoch() - this->begin_time.toMSecsSinceEpoch()).toUTC().toString("hh:mm:ss");
+        MessageBeep(MB_ICONWARNING);
     }
+
+    qDebug() << ""
+             << "";
 }
