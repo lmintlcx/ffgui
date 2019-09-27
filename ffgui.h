@@ -19,6 +19,10 @@
 #include <QStandardPaths>
 #include <QDesktopServices>
 #include <QThread>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QMimeData>
+#include <QUrl>
 
 #include "Windows.h"
 
@@ -55,6 +59,10 @@ public:
   void ChangeOutputFileName(QString);
   void ChangeOutputFileExt();
   QString GetScript();
+
+protected:
+  void dragEnterEvent(QDragEnterEvent *);
+  void dropEvent(QDropEvent *);
 
 public slots:
   void ExecuteResult(bool);

@@ -138,40 +138,40 @@
         <translation>FFmpeg 脚本</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="929"/>
+        <location filename="ffgui.cpp" line="931"/>
         <source>All files (*.*) ;; Picture files (*.png *.jpg *.gif *.tiff *.webp)</source>
         <translation>所有文件 (*.*) ;; 图片文件 (*.png *.jpg *.gif *.tiff *.webp)</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1158"/>
+        <location filename="ffgui.cpp" line="1214"/>
         <source>Encoding success!</source>
         <translation>转码成功！</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1159"/>
-        <location filename="ffgui.cpp" line="1166"/>
+        <location filename="ffgui.cpp" line="1215"/>
+        <location filename="ffgui.cpp" line="1222"/>
         <source>Time span</source>
         <translation>耗时</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1165"/>
+        <location filename="ffgui.cpp" line="1221"/>
         <source>Encoding failure!</source>
         <translation>转码失败！</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="892"/>
-        <location filename="ffgui.cpp" line="906"/>
-        <location filename="ffgui.cpp" line="927"/>
+        <location filename="ffgui.cpp" line="894"/>
+        <location filename="ffgui.cpp" line="908"/>
+        <location filename="ffgui.cpp" line="929"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="894"/>
+        <location filename="ffgui.cpp" line="896"/>
         <source>All files (*.*) ;; Video files (*.flv *.mp4 *.avi *.mov *.mkv)</source>
         <translation>所有文件 (*.*) ;; 视频文件 (*.flv *.mp4 *.avi *.mov *.mkv)</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="908"/>
+        <location filename="ffgui.cpp" line="910"/>
         <source>All files (*.*) ;; Audio files (*.mp3 *.aac *.flac)</source>
         <translation>所有文件 (*.*) ;; 音频文件 (*.mp3 *.aac *.flac)</translation>
     </message>

@@ -19,6 +19,9 @@
         "*.rh": "cpp",
         "chrono": "cpp",
         "qsizepolicy": "cpp",
-        "qapplication": "cpp"
+        "qapplication": "cpp",
+        "qevent": "cpp",
+        "qdragenterevent": "cpp",
+        "qmainwindow": "cpp"
     }
 }

@@ -71,7 +71,7 @@ void FFmpeg::ExecuteScript(QString full_script)
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.6.2 Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.6.3 Console"));
 
     this->list_frame_size << "320x200"
                           << "320x240"
@@ -858,6 +858,8 @@ FFGUI::FFGUI()
     connect(ffmpeg, &FFmpeg::ExecuteResult,
             this, &FFGUI::ExecuteResult);
 
+    setAcceptDrops(true);
+
     // setStyleSheet(QString::fromUtf8("border:1px solid red"));
 }
 
@@ -1140,6 +1142,60 @@ QString FFGUI::GetScript()
     }
 
     return full_script;
+}
+
+void FFGUI::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (true)
+        event->acceptProposedAction();
+}
+
+void FFGUI::dropEvent(QDropEvent *event)
+{
+    QList<QUrl> urls = event->mimeData()->urls();
+    if (urls.isEmpty())
+        return;
+
+    QString first_file_name = urls.first().toLocalFile();
+    if (first_file_name.isEmpty())
+        return;
+
+    foreach (QUrl u, urls)
+    {
+        // qDebug() << u.toString().mid(8);
+        QString input_file_full_name = u.toString().mid(8);
+        QString input_file_suffix = QFileInfo::QFileInfo(input_file_full_name).suffix();
+
+        QStringList video_formats;
+        video_formats << "flv"
+                      << "mp4"
+                      << "avi"
+                      << "mov"
+                      << "mkv";
+        QStringList audio_formats;
+        audio_formats << "mp3"
+                      << "aac"
+                      << "flac";
+
+        if (audio_formats.contains(input_file_suffix)) // audio
+        {
+            line_edit_input_filename_audio->setText(input_file_full_name);
+            if (line_edit_input_filename_video->text() == "")
+            {
+                ChangeOutputFileName(input_file_full_name);
+            }
+            else
+            {
+                ChangeOutputFileName(line_edit_input_filename_video->text());
+            }
+        }
+        else // video / others
+        {
+            line_edit_input_filename_video->setText(input_file_full_name);
+            ChangeOutputFileName(input_file_full_name);
+        }
+    }
+    // qDebug() << urls.size();
 }
 
 void FFGUI::ExecuteResult(bool success)
