@@ -13,6 +13,7 @@ FFmpeg::~FFmpeg()
 
 void FFmpeg::ExecuteScript(QString full_script)
 {
+    QString app_dir = QCoreApplication::applicationDirPath();
     QString temp_dir = QStandardPaths::writableLocation(QStandardPaths::TempLocation) //
                        + "/" + "ffgui_temp_"                                          //
                        + QString::number(QDateTime::currentDateTime().toTime_t(), 16) //
@@ -35,7 +36,6 @@ void FFmpeg::ExecuteScript(QString full_script)
         }
     }
 
-    QString app_dir = QCoreApplication::applicationDirPath();
     QDir::setCurrent(temp_dir);
 
     QString script_file = temp_dir + "/" + "ffmpeg_script.bat";
@@ -55,7 +55,8 @@ void FFmpeg::ExecuteScript(QString full_script)
     out.flush();
     file_s.close();
 
-    int ret = system(script_file.toStdString().c_str());
+    QString script_file_path_with_quotation_mark = QString("") + "\"" + script_file + "\"";
+    int ret = system(script_file_path_with_quotation_mark.toStdString().c_str());
 
     QDir::setCurrent(app_dir);
 
@@ -71,7 +72,7 @@ void FFmpeg::ExecuteScript(QString full_script)
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.6.5 Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.6.7 Console"));
 
     this->list_frame_size << "320x200"
                           << "320x240"

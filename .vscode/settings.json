@@ -22,6 +22,7 @@
         "qapplication": "cpp",
         "qevent": "cpp",
         "qdragenterevent": "cpp",
-        "qmainwindow": "cpp"
+        "qmainwindow": "cpp",
+        "qcheckbox": "cpp"
     }
 }
