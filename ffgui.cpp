@@ -71,7 +71,7 @@ void FFmpeg::ExecuteScript(QString full_script)
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.6.3 Console"));
+    SetConsoleTitle(TEXT("FFGUI 1.6.5 Console"));
 
     this->list_frame_size << "320x200"
                           << "320x240"
@@ -840,6 +840,10 @@ FFGUI::FFGUI()
     });
 
     connect(push_button_execute, &QPushButton::clicked, [=]() {
+        bool ffmpeg_exists = CheckFFmpeg();
+        if (!ffmpeg_exists)
+            return;
+
         bool video_enabled = check_box_video_enable->isChecked();
         bool audio_enabled = check_box_audio_enable->isChecked();
         if (!video_enabled && !audio_enabled)
@@ -859,6 +863,8 @@ FFGUI::FFGUI()
             this, &FFGUI::ExecuteResult);
 
     setAcceptDrops(true);
+
+    CheckFFmpeg();
 
     // setStyleSheet(QString::fromUtf8("border:1px solid red"));
 }
@@ -1142,6 +1148,24 @@ QString FFGUI::GetScript()
     }
 
     return full_script;
+}
+
+bool FFGUI::CheckFFmpeg()
+{
+    QString file_name = QString("")                              //
+                        + QCoreApplication::applicationDirPath() //
+                        + "/"                                    //
+                        + "ffmpeg.exe";
+
+    QFileInfo file_info(file_name);
+    bool ffmpeg_exists = file_info.isFile();
+
+    if (!ffmpeg_exists)
+    {
+        QMessageBox::warning(this, tr("Check FFmpeg"), tr("Note that FFGUI is just a script generator for FFmpeg and does not include media transcoding function itself. Please download FFmpeg from <a href=\"https://www.ffmpeg.org/\">here</a>, then put ffgui.exe and ffmpeg.exe under the same folder after decompressing."), QMessageBox::Ok);
+    }
+
+    return ffmpeg_exists;
 }
 
 void FFGUI::dragEnterEvent(QDragEnterEvent *event)

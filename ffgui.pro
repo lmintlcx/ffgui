@@ -1,9 +1,12 @@
 
-QT += core gui widgets
-CONFIG += qt console
-
 TEMPLATE = app
 TARGET = "ffgui"
+
+CONFIG += qt console
+QT += core gui widgets
+
+CONFIG -= import_plugins
+QTPLUGIN += qwindowsvistastyle qwindows qico
 
 QMAKE_CXXFLAGS += /MP /utf-8 /std:c++17
 

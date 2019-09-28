@@ -59,6 +59,7 @@ public:
   void ChangeOutputFileName(QString);
   void ChangeOutputFileExt();
   QString GetScript();
+  bool CheckFFmpeg();
 
 protected:
   void dragEnterEvent(QDragEnterEvent *);
