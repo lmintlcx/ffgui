@@ -150,7 +150,7 @@
     <message>
         <location filename="ffgui.cpp" line="1166"/>
         <source>Note that FFGUI is just a script generator for FFmpeg and does not include media transcoding function itself. Please download FFmpeg from &lt;a href=&quot;https://www.ffmpeg.org/&quot;&gt;here&lt;/a&gt;, then put ffgui.exe and ffmpeg.exe under the same folder after decompressing.</source>
-        <translation>注意 FFGUI 只是一个适用于 FFmpeg 的脚本生成器，本身并不包含媒体转码功能。请从&lt;a href=\&quot;https://www.ffmpeg.org/\&quot;&gt;这里&lt;/a&gt;下载 FFmpeg，解压后再把 ffgui.exe 和 ffmpeg.exe 放置在同一文件夹下。</translation>
+        <translation>注意 FFGUI 只是一个适用于 FFmpeg 的脚本生成器，本身并不包含媒体转码功能。请从 &lt;a href=&quot;https://www.ffmpeg.org/&quot;&gt;这里&lt;/a&gt; 下载 FFmpeg，解压后再把 ffgui.exe 和 ffmpeg.exe 放置在同一文件夹下。</translation>
     </message>
     <message>
         <location filename="ffgui.cpp" line="1239"/>
