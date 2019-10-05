@@ -125,7 +125,7 @@
     <message>
         <location filename="ffgui.cpp" line="573"/>
         <source>Show Scripts</source>
-        <translation>查看脚本</translation>
+        <translation>显示脚本</translation>
     </message>
     <message>
         <location filename="ffgui.cpp" line="575"/>
@@ -133,55 +133,49 @@
         <translation>开始压制</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="836"/>
-        <source>FFmpeg Scripts</source>
-        <translation>FFmpeg 脚本</translation>
-    </message>
-    <message>
-        <location filename="ffgui.cpp" line="938"/>
+        <location filename="ffgui.cpp" line="935"/>
         <source>All files (*.*) ;; Picture files (*.png *.jpg *.gif *.tiff *.webp)</source>
         <translation>所有文件 (*.*) ;; 图片文件 (*.png *.jpg *.gif *.tiff *.webp)</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1166"/>
+        <location filename="ffgui.cpp" line="1163"/>
         <source>Check FFmpeg</source>
         <translation>检查 FFmpeg</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1166"/>
+        <location filename="ffgui.cpp" line="1163"/>
         <source>Note that FFGUI is just a script generator for FFmpeg and does not include media transcoding function itself. Please download FFmpeg from &lt;a href=&quot;https://www.ffmpeg.org/&quot;&gt;here&lt;/a&gt;, then put ffgui.exe and ffmpeg.exe under the same folder after decompressing.</source>
         <translation>注意 FFGUI 只是一个适用于 FFmpeg 的脚本生成器，本身并不包含媒体转码功能。请从 &lt;a href=&quot;https://www.ffmpeg.org/&quot;&gt;这里&lt;/a&gt; 下载 FFmpeg，解压后再把 ffgui.exe 和 ffmpeg.exe 放置在同一文件夹下。</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1239"/>
+        <location filename="ffgui.cpp" line="1238"/>
         <source>Encoding success!</source>
         <translation>转码成功！</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1240"/>
-        <location filename="ffgui.cpp" line="1247"/>
+        <location filename="ffgui.cpp" line="1239"/>
         <source>Time span</source>
         <translation>耗时</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="1246"/>
+        <location filename="ffgui.cpp" line="1238"/>
         <source>Encoding failure!</source>
         <translation>转码失败！</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="901"/>
-        <location filename="ffgui.cpp" line="915"/>
-        <location filename="ffgui.cpp" line="936"/>
+        <location filename="ffgui.cpp" line="898"/>
+        <location filename="ffgui.cpp" line="912"/>
+        <location filename="ffgui.cpp" line="933"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="903"/>
+        <location filename="ffgui.cpp" line="900"/>
         <source>All files (*.*) ;; Video files (*.flv *.mp4 *.avi *.mov *.mkv)</source>
         <translation>所有文件 (*.*) ;; 视频文件 (*.flv *.mp4 *.avi *.mov *.mkv)</translation>
     </message>
     <message>
-        <location filename="ffgui.cpp" line="917"/>
+        <location filename="ffgui.cpp" line="914"/>
         <source>All files (*.*) ;; Audio files (*.mp3 *.aac *.flac)</source>
         <translation>所有文件 (*.*) ;; 音频文件 (*.mp3 *.aac *.flac)</translation>
     </message>

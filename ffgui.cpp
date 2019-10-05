@@ -72,7 +72,7 @@ void FFmpeg::ExecuteScript(QString full_script)
 
 FFGUI::FFGUI()
 {
-    SetConsoleTitle(TEXT("FFGUI 1.6.7 Console"));
+    SetConsoleTitle(TEXT("Output"));
 
     this->list_frame_size << "320x200"
                           << "320x240"
@@ -832,12 +832,9 @@ FFGUI::FFGUI()
 
         QString full_script = GetScript();
 
-        QMessageBox msg_box;
-        msg_box.setWindowTitle(tr("FFmpeg Scripts"));
-        msg_box.setText(full_script);
-        msg_box.setStyleSheet("QMessageBox { messagebox-text-interaction-flags: 5; }");
-        msg_box.setStandardButtons(QMessageBox::Ok);
-        msg_box.exec();
+        qDebug() << "";
+        qDebug() << full_script.toStdString().c_str();
+        qDebug() << "";
     });
 
     connect(push_button_execute, &QPushButton::clicked, [=]() {
@@ -1187,7 +1184,7 @@ void FFGUI::dropEvent(QDropEvent *event)
 
     foreach (QUrl u, urls)
     {
-        // qDebug() << u.toString().mid(8);
+        // qDebug() << u.toString().mid(8).toStdString().c_str();
         QString input_file_full_name = u.toString().mid(8);
         QString input_file_suffix = QFileInfo::QFileInfo(input_file_full_name).suffix();
 
@@ -1228,27 +1225,20 @@ void FFGUI::ExecuteResult(bool success)
     push_button_execute->setEnabled(true);
     this->end_time = QDateTime::currentDateTime();
 
+    if (success)
+        MessageBeep(MB_OK);
+    else
+        MessageBeep(MB_ICONWARNING);
+
     // TODO
     if (success)
         qDebug() << "Conversion success!";
 
+    QString str_result = QString("")                                                     //
+                         + (success ? tr("Encoding success!") : tr("Encoding failure!")) //
+                         + " " + tr("Time span") + ": "                                  //
+                         + QDateTime::fromMSecsSinceEpoch(this->end_time.toMSecsSinceEpoch() - this->begin_time.toMSecsSinceEpoch()).toUTC().toString("hh:mm:ss");
     qDebug() << "";
-
-    if (success)
-    {
-        qDebug() << tr("Encoding success!")
-                 << " " << tr("Time span") << ": "
-                 << QDateTime::fromMSecsSinceEpoch(this->end_time.toMSecsSinceEpoch() - this->begin_time.toMSecsSinceEpoch()).toUTC().toString("hh:mm:ss");
-        MessageBeep(MB_OK);
-    }
-    else
-    {
-        qDebug() << tr("Encoding failure!")
-                 << " " << tr("Time span") << ": "
-                 << QDateTime::fromMSecsSinceEpoch(this->end_time.toMSecsSinceEpoch() - this->begin_time.toMSecsSinceEpoch()).toUTC().toString("hh:mm:ss");
-        MessageBeep(MB_ICONWARNING);
-    }
-
-    qDebug() << ""
-             << "";
+    qDebug() << str_result.toStdString().c_str();
+    qDebug() << "";
 }

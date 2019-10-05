@@ -6,7 +6,7 @@ CONFIG += qt console
 QT += core gui widgets
 
 CONFIG -= import_plugins
-QTPLUGIN += qwindowsvistastyle qwindows qico
+QTPLUGIN += qwindows qwindowsvistastyle
 
 QMAKE_CXXFLAGS += /MP /utf-8 /std:c++17
 

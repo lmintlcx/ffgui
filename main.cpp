@@ -11,9 +11,8 @@
 #include "ffgui.h"
 
 #include <QtPlugin>
-Q_IMPORT_PLUGIN(QWindowsVistaStylePlugin)
 Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
-Q_IMPORT_PLUGIN(QICOPlugin)
+Q_IMPORT_PLUGIN(QWindowsVistaStylePlugin)
 
 int main(int argc, char *argv[])
 {
@@ -47,7 +46,7 @@ int main(int argc, char *argv[])
 
     FFGUI *ui = new FFGUI;
     ui->setAttribute(Qt::WA_DeleteOnClose);
-    ui->setWindowTitle("FFGUI 1.6.7");
+    ui->setWindowTitle("FFGUI 1.6.8");
     ui->resize(width, height);
     ui->setFixedSize(width, height);
     ui->show();
