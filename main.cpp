@@ -25,13 +25,16 @@ int main(int argc, char *argv[])
 
     QTranslator tr_ffgui_zh_CN;
     QTranslator tr_qt_zh_CN;
+    QTranslator tr_widgets_zh_CN;
     tr_ffgui_zh_CN.load(":/ffgui_zh_CN.qm");
     tr_qt_zh_CN.load(":/qt_zh_CN.qm");
+    tr_widgets_zh_CN.load(":/widgets_zh_CN.qm");
     QString locale = QLocale::system().name();
     if (true) // locale.mid(0, 2) == "zh"
     {
         app.installTranslator(&tr_ffgui_zh_CN);
         app.installTranslator(&tr_qt_zh_CN);
+        app.installTranslator(&tr_widgets_zh_CN);
     }
 
     HDC screen = GetDC(nullptr);

@@ -22,3 +22,4 @@ TRANSLATIONS += ffgui_zh_CN.ts
 RESOURCES += ffgui.qrc
 
 RC_ICONS = logo.ico
+VERSION = 1.6.8

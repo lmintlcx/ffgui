@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh">
+<TS version="2.1" language="zh">
 <context>
     <name>MAC_APPLICATION_MENU</name>
     <message>
@@ -112,7 +112,7 @@
         <source>Warning: You do not seem to have the base GStreamer plugins installed.
           All audio and video support has been disabled</source>
         <translation>警告：看起来，您没有安装基础的 GStreamer 插件。
-    所有的音频和视频支持都已经被关闭。</translation>
+    所有的音频和视频支持都已经被关闭</translation>
     </message>
 </context>
 <context>
@@ -179,7 +179,7 @@ have libgstreamer-plugins-base installed.</source>
         <location line="+18"/>
         <location line="+54"/>
         <source>Use this slider to adjust the volume. The leftmost position is 0%, the rightmost is %1%</source>
-        <translation>请使用这个滑块调节音量。最左为%0，最右为%1%</translation>
+        <translation>请使用这个滑块调节音量。最左为0%，最右为%1%</translation>
     </message>
 </context>
 <context>
@@ -740,7 +740,7 @@ to
     <message>
         <location line="+18"/>
         <source>Contains commands to manipulate the window</source>
-        <translation>包含操作窗口的命令。</translation>
+        <translation>包含操作窗口的命令</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1456,7 +1456,7 @@ to
     <message>
         <location line="-108"/>
         <source>Cannot remove source file</source>
-        <translation type="unfinished"></translation>
+        <translation>无法删除源文件</translation>
     </message>
     <message>
         <location line="+120"/>
@@ -2268,7 +2268,7 @@ Do you want to delete it anyway?</source>
     <message>
         <location line="+179"/>
         <source>Unknown authentication method</source>
-        <translation type="unfinished"></translation>
+        <translation>未知的认证方式</translation>
     </message>
     <message>
         <location line="+183"/>
@@ -2683,7 +2683,7 @@ Do you want to delete it anyway?</source>
         <location line="+31"/>
         <location filename="../src/corelib/plugin/qlibrary_win.cpp" line="+15"/>
         <source>Cannot resolve symbol &quot;%1&quot; in %2: %3</source>
-        <translation>无法解析%2中的符号“%2”：%3</translation>
+        <translation>无法解析%2中的符号“%1”：%3</translation>
     </message>
 </context>
 <context>
@@ -3119,7 +3119,7 @@ Do you want to delete it anyway?</source>
     <message>
         <location line="+1570"/>
         <source>&lt;h3&gt;About Qt&lt;/h3&gt;&lt;p&gt;This program uses Qt version %1.&lt;/p&gt;&lt;p&gt;Qt is a C++ toolkit for cross-platform application development.&lt;/p&gt;&lt;p&gt;Qt provides single-source portability across MS&amp;nbsp;Windows, Mac&amp;nbsp;OS&amp;nbsp;X, Linux, and all major commercial Unix variants. Qt is also available for embedded devices as Qt for Embedded Linux and Qt for Windows CE.&lt;/p&gt;&lt;p&gt;Qt is available under three different licensing options designed to accommodate the needs of our various users.&lt;/p&gt;Qt licensed under our commercial license agreement is appropriate for development of proprietary/commercial software where you do not want to share any source code with third parties or otherwise cannot comply with the terms of the GNU LGPL version 2.1 or GNU GPL version 3.0.&lt;/p&gt;&lt;p&gt;Qt licensed under the GNU LGPL version 2.1 is appropriate for the development of Qt applications (proprietary or open source) provided you can comply with the terms and conditions of the GNU LGPL version 2.1.&lt;/p&gt;&lt;p&gt;Qt licensed under the GNU General Public License version 3.0 is appropriate for the development of Qt applications where you wish to use such applications in combination with software subject to the terms of the GNU GPL version 3.0 or where you are otherwise willing to comply with the terms of the GNU GPL version 3.0.&lt;/p&gt;&lt;p&gt;Please see &lt;a href=&quot;http://qt.nokia.com/products/licensing&quot;&gt;qt.nokia.com/products/licensing&lt;/a&gt; for an overview of Qt licensing.&lt;/p&gt;&lt;p&gt;Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).&lt;/p&gt;&lt;p&gt;Qt is a Nokia product. See &lt;a href=&quot;http://qt.nokia.com/&quot;&gt;qt.nokia.com&lt;/a&gt; for more information.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;h3&gt;About Qt&lt;/h3&gt;%1&lt;p&gt;Qt is a C++ toolkit for cross-platform application development.&lt;/p&gt;&lt;p&gt;Qt provides single-source portability across MS&amp;nbsp;Windows, Mac&amp;nbsp;OS&amp;nbsp;X, Linux, and all major commercial Unix variants. Qt is also available for embedded devices as Qt for Embedded Linux and Qt for Windows CE.&lt;/p&gt;&lt;p&gt;Qt is a Nokia product. See &lt;a href=&quot;http://qt.nokia.com/&quot;&gt;qt.nokiae.com&lt;/a&gt; for more information.&lt;/p&gt;</source>
@@ -3285,7 +3285,7 @@ Do you want to delete it anyway?</source>
     <message>
         <location line="-3"/>
         <source>The proxy type is invalid for this operation</source>
-        <translation>对于这个操作代理类型是无效的。</translation>
+        <translation>对于这个操作代理类型是无效的</translation>
     </message>
 </context>
 <context>
@@ -3494,7 +3494,7 @@ Do you want to delete it anyway?</source>
         <location line="-1218"/>
         <location line="+349"/>
         <source>QODBCResult::reset: Unable to set &apos;SQL_CURSOR_STATIC&apos; as statement attribute. Please check your ODBC driver configuration</source>
-        <translation>QODBCResult::reset: 不能把“SQL_CURSOR_STATIC”设置为语句属性。请检查你的ODBC驱动程序设置。</translation>
+        <translation>QODBCResult::reset: 不能把“SQL_CURSOR_STATIC”设置为语句属性。请检查你的ODBC驱动程序设置</translation>
     </message>
     <message>
         <location line="-332"/>
@@ -4521,7 +4521,7 @@ Please choose a different file name.</source>
     <message>
         <location line="+912"/>
         <source>No program defined</source>
-        <translation type="unfinished"></translation>
+        <translation>未指定进程</translation>
     </message>
     <message>
         <location filename="../src/corelib/io/qprocess_win.cpp" line="-341"/>
@@ -6298,7 +6298,7 @@ Please choose a different file name.</source>
     <message>
         <location line="+3"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>全选</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -6373,12 +6373,12 @@ Please choose a different file name.</source>
     <message>
         <location line="+33"/>
         <source>Insert a new paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>插入新段落</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Insert a new line</source>
-        <translation type="unfinished"></translation>
+        <translation>插入新行</translation>
     </message>
 </context>
 <context>
@@ -6703,7 +6703,7 @@ Please choose a different file name.</source>
     <message>
         <location line="+7"/>
         <source>Encoding %1 is unsupported</source>
-        <translation>编码%1不被支持。</translation>
+        <translation>编码%1不被支持</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -7118,18 +7118,18 @@ Please choose a different file name.</source>
     <message>
         <location filename="../src/xmlpatterns/expr/qqnameconstructor.cpp" line="+82"/>
         <source>No namespace binding exists for the prefix %1</source>
-        <translation>对于前缀 %1，没有存在绑定的命名空间。</translation>
+        <translation>对于前缀 %1，没有存在绑定的命名空间</translation>
     </message>
     <message>
         <location filename="../src/xmlpatterns/expr/qqnameconstructor_p.h" line="+156"/>
         <source>No namespace binding exists for the prefix %1 in %2</source>
-        <translation>对于 %2 中的前缀 %1，没有存在绑定的命名空间。</translation>
+        <translation>对于 %2 中的前缀 %1，没有存在绑定的命名空间</translation>
     </message>
     <message>
         <location line="+12"/>
         <location filename="../src/xmlpatterns/functions/qqnamefns.cpp" line="+69"/>
         <source>%1 is an invalid %2</source>
-        <translation>%1 是一个无效的 %2。</translation>
+        <translation>%1 是一个无效的 %2</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/xmlpatterns/functions/qabstractfunctionfactory.cpp" line="+77"/>
@@ -7294,7 +7294,7 @@ Please choose a different file name.</source>
     <message>
         <location line="+63"/>
         <source>No variable by name %1 exists</source>
-        <translation>没有名称为 %1 的变量存在。</translation>
+        <translation>没有名称为 %1 的变量存在</translation>
     </message>
     <message>
         <location filename="../src/xmlpatterns/parser/qparsercontext.cpp" line="+93"/>
@@ -7314,7 +7314,7 @@ Please choose a different file name.</source>
     <message>
         <location line="+55"/>
         <source>No function with signature %1 is available</source>
-        <translation>没有签名为 %1 的可用函数。</translation>
+        <translation>没有签名为 %1 的可用函数</translation>
     </message>
     <message>
         <location line="+72"/>
@@ -7387,7 +7387,7 @@ Please choose a different file name.</source>
     <message>
         <location line="+118"/>
         <source>A template by name %1 has already been declared.</source>
-        <translation>模板%1已被声明</translation>
+        <translation>模板%1已被声明。</translation>
     </message>
     <message>
         <location line="+3581"/>
@@ -7492,17 +7492,17 @@ Please choose a different file name.</source>
     <message>
         <location line="+39"/>
         <source>None of the pragma expressions are supported. Therefore, a fallback expression must be present</source>
-        <translation>不支持任何编译指示表达式(pragma expression)。因此，必须呈现一个回调表达式(fallback expression)。</translation>
+        <translation>不支持任何编译指示表达式(pragma expression)。因此，必须呈现一个回调表达式(fallback expression)</translation>
     </message>
     <message>
         <location line="+267"/>
         <source>Each name of a template parameter must be unique; %1 is duplicated.</source>
-        <translation>每一个模板参数的名称都必须是唯一的；%2是重复的。</translation>
+        <translation>每一个模板参数的名称都必须是唯一的；%1是重复的。</translation>
     </message>
     <message>
         <location line="+129"/>
         <source>The %1-axis is unsupported in XQuery</source>
-        <translation>这个 %1 轴在 XQuery 中是不被支持的。</translation>
+        <translation>这个 %1 轴在 XQuery 中是不被支持的</translation>
     </message>
     <message>
         <location line="+1150"/>
@@ -7532,7 +7532,7 @@ Please choose a different file name.</source>
     <message>
         <location line="+6"/>
         <source>It is not possible to bind to the prefix %1</source>
-        <translation>无法绑定到这个前缀 %1。</translation>
+        <translation>无法绑定到这个前缀 %1</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -7681,7 +7681,7 @@ Please choose a different file name.</source>
     <message>
         <location filename="../src/xmlpatterns/expr/qcomputednamespaceconstructor.cpp" line="+69"/>
         <source>In a namespace constructor, the value for a namespace cannot be an empty string.</source>
-        <translation type="unfinished"></translation>
+        <translation>在一个命名空间构造中，命名空间的值不能为空字符串。</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -7696,7 +7696,7 @@ Please choose a different file name.</source>
     <message>
         <location line="+10"/>
         <source>Only the prefix %1 can be bound to %2 and vice versa.</source>
-        <translation>只有前缀%1可以绑定到%2，反之也一样</translation>
+        <translation>只有前缀%1可以绑定到%2，反之也一样。</translation>
     </message>
     <message>
         <location filename="../src/xmlpatterns/expr/qevaluationcache.cpp" line="+117"/>
