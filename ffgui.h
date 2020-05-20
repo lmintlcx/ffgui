@@ -162,6 +162,7 @@ private:
   QWidget *widget_scripts;
   QGridLayout *grid_layout_scripts;
   QPushButton *push_button_check_updates;
+  QLabel *label_current_version;
   QPushButton *push_button_show_scripts;
   QPushButton *push_button_execute;
   // main

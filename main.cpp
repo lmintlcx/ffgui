@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
     FFGUI *ui = new FFGUI;
     ui->setAttribute(Qt::WA_DeleteOnClose);
-    ui->setWindowTitle("FFGUI 1.6.8");
+    ui->setWindowTitle("FFGUI");
     ui->resize(width, height);
     ui->setFixedSize(width, height);
     ui->show();

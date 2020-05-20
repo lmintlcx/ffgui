@@ -56,7 +56,7 @@ void FFmpeg::ExecuteScript(QString full_script)
     file_s.close();
 
     QString script_file_path_with_quotation_mark = QString("") + "\"" + script_file + "\"";
-    int ret = system(script_file_path_with_quotation_mark.toStdString().c_str());
+    int ret = _wsystem(script_file_path_with_quotation_mark.toStdWString().c_str());
 
     QDir::setCurrent(app_dir);
 
@@ -178,12 +178,14 @@ FFGUI::FFGUI()
     label_input_video = new QLabel(group_box_input);
     label_input_video->setText(tr("Video"));
     line_edit_input_filename_video = new QLineEdit(group_box_input);
+    line_edit_input_filename_video->setPlaceholderText(tr("Select or drag a video file to here."));
     push_button_open_video = new QPushButton(group_box_input);
     push_button_open_video->setText(tr("Open"));
 
     label_input_audio = new QLabel(group_box_input);
     label_input_audio->setText(tr("Audio"));
     line_edit_input_filename_audio = new QLineEdit(group_box_input);
+    line_edit_input_filename_audio->setPlaceholderText(tr("Audio can be merged with video which does\'t contain a audio."));
     push_button_open_audio = new QPushButton(group_box_input);
     push_button_open_audio->setText(tr("Open"));
 
@@ -208,6 +210,7 @@ FFGUI::FFGUI()
     label_output = new QLabel(group_box_output);
     label_output->setText(tr("File"));
     line_edit_output_filename = new QLineEdit(group_box_output);
+    line_edit_output_filename->setPlaceholderText(tr("Output File Path"));
 
     grid_layout_output = new QGridLayout(group_box_output);
     grid_layout_output->addWidget(label_output, 0, 0, 1, 1);
@@ -462,6 +465,7 @@ FFGUI::FFGUI()
     line_edit_watermark_y->setText("0");
 
     line_edit_input_watermark = new QLineEdit(group_box_filter);
+    line_edit_input_watermark->setPlaceholderText(tr("Watermark File Path"));
     push_button_open_watermark = new QPushButton(group_box_filter);
     push_button_open_watermark->setText(tr("Open"));
 
@@ -569,6 +573,8 @@ FFGUI::FFGUI()
 
     push_button_check_updates = new QPushButton(widget_scripts);
     push_button_check_updates->setText(tr("Check Updates"));
+    label_current_version = new QLabel(widget_scripts);
+    label_current_version->setText(tr("Current Version") + ": " + "1.6.9");
     push_button_show_scripts = new QPushButton(widget_scripts);
     push_button_show_scripts->setText(tr("Show Scripts"));
     push_button_execute = new QPushButton(widget_scripts);
@@ -576,6 +582,7 @@ FFGUI::FFGUI()
 
     grid_layout_scripts = new QGridLayout(widget_scripts);
     grid_layout_scripts->addWidget(push_button_check_updates, 0, 0, 1, 1);
+    grid_layout_scripts->addWidget(label_current_version, 0, 1, 1, 1);
     grid_layout_scripts->addWidget(push_button_show_scripts, 0, 3, 1, 1);
     grid_layout_scripts->addWidget(push_button_execute, 0, 4, 1, 1);
     for (int i = 0; i < grid_layout_scripts->rowCount(); i++)
@@ -840,6 +847,11 @@ FFGUI::FFGUI()
     connect(push_button_execute, &QPushButton::clicked, [=]() {
         bool ffmpeg_exists = CheckFFmpeg();
         if (!ffmpeg_exists)
+            return;
+
+        QString script_input_file_video = line_edit_input_filename_video->text();
+        QString script_input_file_audio = line_edit_input_filename_audio->text();
+        if (script_input_file_video == "" && script_input_file_audio == "")
             return;
 
         bool video_enabled = check_box_video_enable->isChecked();
