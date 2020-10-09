@@ -6,7 +6,7 @@ CONFIG += qt console
 QT += core gui widgets
 
 CONFIG -= import_plugins
-QTPLUGIN += qwindows qwindowsvistastyle
+QTPLUGIN += qwindows qwindowsvistastyle qjpeg qico
 
 QMAKE_CXXFLAGS += /MP /utf-8 /std:c++17
 
@@ -22,4 +22,4 @@ TRANSLATIONS += ffgui_zh_CN.ts
 RESOURCES += ffgui.qrc
 
 RC_ICONS = logo.ico
-VERSION = 1.6.9
+VERSION = 1.6.10

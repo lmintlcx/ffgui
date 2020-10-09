@@ -16,6 +16,10 @@ Q_IMPORT_PLUGIN(QWindowsVistaStylePlugin)
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+
     QApplication app(argc, argv);
 
     QFont font = app.font();
@@ -37,21 +41,24 @@ int main(int argc, char *argv[])
         app.installTranslator(&tr_widgets_zh_CN);
     }
 
-    HDC screen = GetDC(nullptr);
-    int dpi_x = GetDeviceCaps(screen, LOGPIXELSX);
-    int dpi_y = GetDeviceCaps(screen, LOGPIXELSY);
-    ReleaseDC(nullptr, screen);
-    const float default_dpi = 96.0f;
-    float scale_x = dpi_x / default_dpi;
-    float scale_y = dpi_y / default_dpi;
-    int width = 780 * scale_x;
-    int height = 564 * scale_y;
+    // HDC screen = GetDC(nullptr);
+    // int dpi_x = GetDeviceCaps(screen, LOGPIXELSX);
+    // int dpi_y = GetDeviceCaps(screen, LOGPIXELSY);
+    // ReleaseDC(nullptr, screen);
+    // const float default_dpi = 96.0f;
+    // float scale_x = dpi_x / default_dpi;
+    // float scale_y = dpi_y / default_dpi;
+    // int width = 780 * scale_x;
+    // int height = 564 * scale_y;
 
     FFGUI *ui = new FFGUI;
     ui->setAttribute(Qt::WA_DeleteOnClose);
-    ui->setWindowTitle("FFGUI");
-    ui->resize(width, height);
-    ui->setFixedSize(width, height);
+    ui->setWindowTitle(QString("FFGUI") + "  -  " //
+                       + QObject::tr("FFmpeg's Script Generator"));
+    // ui->resize(width, height);
+    // ui->setFixedSize(width, height);
+    ui->resize(780, 564);
+    ui->setFixedSize(780, 564);
     ui->show();
 
     return app.exec();

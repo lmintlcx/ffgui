@@ -263,4 +263,12 @@
         <translation>声道数</translation>
     </message>
 </context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="main.cpp" line="57"/>
+        <source>FFmpeg&apos;s Script Generator</source>
+        <translation>FFmpeg 脚本生成器</translation>
+    </message>
+</context>
 </TS>

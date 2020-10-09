@@ -65,7 +65,7 @@ void FFmpeg::ExecuteScript(QString full_script)
     file_1.remove();
     temp.rmdir(temp_dir);
 
-    emit ExecuteResult(ret == 0 ? true : false);
+    emit ExecuteResult(ret == 0);
 }
 
 // FFGUI
@@ -312,8 +312,8 @@ FFGUI::FFGUI()
     QCompleter *completer_frame_size = new QCompleter(list_frame_size);
     line_edit_video_frame_size->setCompleter(completer_frame_size);
 
-    QRegExp reg_frame_size("[1-9][0-9]{1,5}[x][1-9][0-9]{1,5}");
-    line_edit_video_frame_size->setValidator(new QRegExpValidator(reg_frame_size, this));
+    QRegularExpression reg_frame_size("[1-9][0-9]{1,5}[x][1-9][0-9]{1,5}");
+    line_edit_video_frame_size->setValidator(new QRegularExpressionValidator(reg_frame_size, this));
 
     label_video_frame_rate = new QLabel(group_box_video);
     label_video_frame_rate->setText(tr("Frame Rate") + " (fps)");
@@ -325,8 +325,8 @@ FFGUI::FFGUI()
     QCompleter *completer_frame_rate = new QCompleter(list_frame_rate);
     line_edit_video_frame_rate->setCompleter(completer_frame_rate);
 
-    QRegExp reg_frame_rate("^([0]|[1-9][0-9]{0,2})([.][0-9]{1,3})$");
-    line_edit_video_frame_rate->setValidator(new QRegExpValidator(reg_frame_rate, this));
+    QRegularExpression reg_frame_rate("^([0]|[1-9][0-9]{0,2})([.][0-9]{1,3})$");
+    line_edit_video_frame_rate->setValidator(new QRegularExpressionValidator(reg_frame_rate, this));
 
     label_video_profile_level = new QLabel(group_box_video);
     label_video_profile_level->setText(tr("Profile") + " / " + tr("Level"));
@@ -574,7 +574,7 @@ FFGUI::FFGUI()
     push_button_check_updates = new QPushButton(widget_scripts);
     push_button_check_updates->setText(tr("Check Updates"));
     label_current_version = new QLabel(widget_scripts);
-    label_current_version->setText(tr("Current Version") + ": " + "1.6.9");
+    label_current_version->setText(tr("Current Version") + ": " + "1.6.10");
     push_button_show_scripts = new QPushButton(widget_scripts);
     push_button_show_scripts->setText(tr("Show Scripts"));
     push_button_execute = new QPushButton(widget_scripts);
@@ -1198,7 +1198,7 @@ void FFGUI::dropEvent(QDropEvent *event)
     {
         // qDebug() << u.toString().mid(8).toStdString().c_str();
         QString input_file_full_name = u.toString().mid(8);
-        QString input_file_suffix = QFileInfo::QFileInfo(input_file_full_name).suffix();
+        QString input_file_suffix = QFileInfo(input_file_full_name).suffix();
 
         QStringList video_formats;
         video_formats << "flv"
