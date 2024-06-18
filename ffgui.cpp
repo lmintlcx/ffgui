@@ -559,8 +559,8 @@ FFGUI::FFGUI()
     grid_layout_filter->addWidget(line_edit_cutting_start, 2, 2, 1, 2);
     grid_layout_filter->addWidget(label_cutting_duration, 2, 4, 1, 1);
     grid_layout_filter->addWidget(line_edit_cutting_duration, 2, 5, 1, 2);
-    grid_layout_filter->addWidget(check_box_half_speed, 2, 10, 1, 1);
-    grid_layout_filter->addWidget(check_box_double_speed, 2, 11, 1, 1);
+    grid_layout_filter->addWidget(check_box_half_speed, 2, 8, 1, 2);
+    grid_layout_filter->addWidget(check_box_double_speed, 2, 10, 1, 2);
     for (int i = 0; i < grid_layout_filter->rowCount(); i++)
         grid_layout_filter->setRowStretch(i, 1);
     for (int i = 0; i < grid_layout_filter->columnCount(); i++)
@@ -574,7 +574,7 @@ FFGUI::FFGUI()
     push_button_check_updates = new QPushButton(widget_scripts);
     push_button_check_updates->setText(tr("Check Updates"));
     label_current_version = new QLabel(widget_scripts);
-    label_current_version->setText(tr("Current Version") + ": " + "1.6.10");
+    label_current_version->setText(tr("Current Version") + ": " + "1.6.12");
     push_button_show_scripts = new QPushButton(widget_scripts);
     push_button_show_scripts->setText(tr("Show Scripts"));
     push_button_execute = new QPushButton(widget_scripts);
