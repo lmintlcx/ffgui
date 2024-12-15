@@ -1,28 +1,28 @@
 #pragma once
 
-#include <QDebug>
-#include <QWidget>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QCompleter>
+#include <QCoreApplication>
+#include <QDateTime>
+#include <QDebug>
+#include <QDesktopServices>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QFileDialog>
+#include <QFileInfo>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
+#include <QMessageBox>
+#include <QMimeData>
 #include <QPushButton>
 #include <QSpinBox>
-#include <QCompleter>
-#include <QFileDialog>
-#include <QCoreApplication>
-#include <QDateTime>
-#include <QFileInfo>
-#include <QMessageBox>
 #include <QStandardPaths>
-#include <QDesktopServices>
 #include <QThread>
-#include <QDragEnterEvent>
-#include <QDropEvent>
-#include <QMimeData>
 #include <QUrl>
+#include <QWidget>
 
 #include "Windows.h"
 
@@ -32,14 +32,14 @@ class FFmpeg : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     FFmpeg();
     ~FFmpeg();
 
-public slots:
+  public slots:
     void ExecuteScript(QString);
 
-signals:
+  signals:
     void ExecuteResult(bool);
 };
 
@@ -49,77 +49,79 @@ class FFGUI : public QWidget
 {
     Q_OBJECT
 
-public:
+  public:
     FFGUI();
     ~FFGUI();
-    void SwitchX264Mode();
-    void OpenFileVideo();
-    void OpenFileAudio();
-    void OpenFilePicture();
+    void OpenFile();
     void ChangeOutputFileName(QString);
     void ChangeOutputFileExt();
     QString GetScript();
     bool CheckFFmpeg();
 
-protected:
+  protected:
     void dragEnterEvent(QDragEnterEvent *);
     void dropEvent(QDropEvent *);
 
-public slots:
+  public slots:
     void ExecuteResult(bool);
 
-signals:
+  signals:
     void ExecuteScript(QString);
 
-private:
+  private:
     // time
     QDateTime begin_time;
     QDateTime end_time;
     // list
     QStringList list_frame_size;
     QStringList list_frame_rate;
+    QStringList list_audio_rate;
     // worker
     FFmpeg *ffmpeg;
     QThread *thread;
     // input
     QGroupBox *group_box_input;
     QGridLayout *grid_layout_input;
-    QLabel *label_input_video;
-    QLineEdit *line_edit_input_filename_video;
-    QPushButton *push_button_open_video;
-    QLabel *label_input_audio;
-    QLineEdit *line_edit_input_filename_audio;
-    QPushButton *push_button_open_audio;
+    QLineEdit *line_edit_input_filename;
+    QPushButton *push_button_open;
     // output
     QGroupBox *group_box_output;
     QGridLayout *grid_layout_output;
-    QLabel *label_output;
     QLineEdit *line_edit_output_filename;
+    QCheckBox *check_box_overwrite;
     // video
     QGroupBox *group_box_video;
     QGridLayout *grid_layout_video;
     QCheckBox *check_box_video_enable;
-    QCheckBox *check_box_video_crf;
-    QCheckBox *check_box_video_2pass;
-    QLabel *label_video_codec;
-    QComboBox *combo_box_video_codec;
     QLabel *label_video_container;
     QComboBox *combo_box_video_container;
+    QLabel *label_video_codec;
+    QComboBox *combo_box_video_codec;
+    // video label
+    QLabel *label_video_profile;
     QLabel *label_video_preset;
-    QComboBox *combo_box_video_x264_preset;
-    QComboBox *combo_box_video_nvenc_preset;
-    QLabel *label_video_bitrate;
-    QDoubleSpinBox *spin_box_video_bitrate;
     QLabel *label_video_factor;
-    QDoubleSpinBox *spin_box_video_factor;
+    // video x264
+    QComboBox *combo_box_x264_profile;
+    QComboBox *combo_box_x264_preset;
+    QDoubleSpinBox *spin_box_x264_factor;
+    // video x265
+    QComboBox *combo_box_x265_profile;
+    QComboBox *combo_box_x265_preset;
+    QDoubleSpinBox *spin_box_x265_factor;
+    // video svtav1
+    QComboBox *combo_box_svtav1_profile;
+    QComboBox *combo_box_svtav1_preset;
+    QSpinBox *spin_box_svtav1_factor;
+    // video common
+    QLabel *label_video_pix_fmt;
+    QComboBox *combo_box_video_pix_fmt;
+    QLabel *label_video_keyint;
+    QLineEdit *line_edit_video_keyint;
     QLabel *label_video_frame_size;
     QLineEdit *line_edit_video_frame_size;
     QLabel *label_video_frame_rate;
     QLineEdit *line_edit_video_frame_rate;
-    QLabel *label_video_profile_level;
-    QComboBox *combo_box_video_profile_level;
-    QLabel *label_video_x264_keyint;
-    QLineEdit *line_edit_video_x264_keyint;
     // audio
     QGroupBox *group_box_audio;
     QGridLayout *grid_layout_audio;
@@ -127,7 +129,9 @@ private:
     QLabel *label_audio_codec;
     QComboBox *combo_box_audio_codec;
     QLabel *label_audio_bitrate;
-    QComboBox *combo_box_audio_bitrate;
+    QComboBox *combo_box_mp3_bitrate;
+    QComboBox *combo_box_aac_bitrate;
+    QComboBox *combo_box_opus_bitrate;
     QLabel *label_audio_frequency;
     QComboBox *combo_box_audio_frequency;
     QLabel *label_audio_channels;
@@ -135,13 +139,6 @@ private:
     // filter
     QGroupBox *group_box_filter;
     QGridLayout *grid_layout_filter;
-    QCheckBox *check_box_watermark;
-    QLabel *label_watermark_x;
-    QLineEdit *line_edit_watermark_x;
-    QLabel *label_watermark_y;
-    QLineEdit *line_edit_watermark_y;
-    QLineEdit *line_edit_input_watermark;
-    QPushButton *push_button_open_watermark;
     QCheckBox *check_box_crop;
     QLabel *label_crop_x;
     QLineEdit *line_edit_crop_x;
@@ -151,13 +148,11 @@ private:
     QLineEdit *line_edit_crop_width;
     QLabel *label_crop_height;
     QLineEdit *line_edit_crop_height;
-    QCheckBox *check_box_cutting;
-    QLabel *label_cutting_start;
-    QLineEdit *line_edit_cutting_start;
-    QLabel *label_cutting_duration;
-    QLineEdit *line_edit_cutting_duration;
-    QCheckBox *check_box_half_speed;
-    QCheckBox *check_box_double_speed;
+    QCheckBox *check_box_cut;
+    QLabel *label_cut_start;
+    QLineEdit *line_edit_cut_start;
+    QLabel *label_cut_duration;
+    QLineEdit *line_edit_cut_duration;
     // scripts
     QWidget *widget_scripts;
     QGridLayout *grid_layout_scripts;

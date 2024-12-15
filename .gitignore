@@ -5,4 +5,3 @@ release/
 Makefile
 Makefile.Debug
 Makefile.Release
-pvz_plugin_import.cpp
