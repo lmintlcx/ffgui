@@ -878,21 +878,21 @@ QString FFGUI::GetScript()
         case 1: // x264
         default:
             script_video += " -vcodec libx264";
-            script_video += QString(" -profile") + " " + combo_box_x264_profile->currentText();
+            script_video += QString(" -profile:v") + " " + combo_box_x264_profile->currentText();
             script_video += QString(" -preset") + " " + combo_box_x264_preset->currentText();
             script_video += QString(" -crf") + " " + spin_box_x264_factor->text();
             break;
 
         case 2: // x265
             script_video += " -vcodec libx265";
-            script_video += QString(" -profile") + " " + combo_box_x265_profile->currentText();
+            script_video += QString(" -profile:v") + " " + combo_box_x265_profile->currentText();
             script_video += QString(" -preset") + " " + combo_box_x265_preset->currentText();
             script_video += QString(" -crf") + " " + spin_box_x265_factor->text();
             break;
 
         case 3: // svtav1
             script_video += " -vcodec libsvtav1";
-            script_video += QString(" -profile") + " " + combo_box_svtav1_profile->currentText();
+            script_video += QString(" -profile:v") + " " + combo_box_svtav1_profile->currentText();
             script_video += QString(" -preset") + " " + combo_box_svtav1_preset->currentText();
             script_video += QString(" -crf") + " " + spin_box_svtav1_factor->text();
             break;
